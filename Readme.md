@@ -6,10 +6,6 @@
 ![Python](https://img.shields.io/badge/Python-3.10+-green.svg)
 ![License](https://img.shields.io/badge/license-MIT-orange.svg)
 
-<div align="center">
-  <img src="/api/placeholder/800/400" alt="JobHunterAI Logo" />
-  <p><em>Projet académique — Master 1 DS2E — Université de Strasbourg</em></p>
-</div>
 
 ## 📋 Table des matières
 
@@ -353,7 +349,6 @@ Ce projet a été réalisé par les étudiants du Master 1 DS2E de l'Université
 - **Groupe 4**: Analyse de CV PDF
 - **Groupe 5**: Matching CV-Offre & Génération de lettre
 
-Nous remercions particulièrement les encadrants du projet pour leur soutien et leurs conseils tout au long du développement.
 
 ## 🔮 Perspectives d'évolution
 
