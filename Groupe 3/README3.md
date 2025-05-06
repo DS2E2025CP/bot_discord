@@ -1,7 +1,7 @@
 
  5 Auteurs  actifs pour ce travail **d'équipe**, dans le but d'**insérer cette fonctionnalité dans le bot discord**: 
  
-Grégoire Fuchs
+**Grégoire Fuchs
 
 Eelai
 
@@ -9,7 +9,7 @@ Vasile
 
 Laurentiu
 
-Sayqin
+Sayqin**
 
 # Partie 1 : Webscraping  des offres d'alternance. 
 
