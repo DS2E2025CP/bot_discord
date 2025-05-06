@@ -1,10 +1,11 @@
 
  5 Auteurs : 
-Grégoire Fuchs
-Eelai
-Vasile
-Laurentiu
-Sayqin
+ 
+1.Grégoire Fuchs
+2.Eelai
+3.Vasile
+4.Laurentiu
+5.Sayqin
 
 # Partie 1 : Webscraping  des offres d'alternance. 
 
@@ -13,7 +14,7 @@ Sayqin
 ## But : 
 Ce script permet de collecter, nettoyer, analyser et sauvegarder des offres d'emploi en **alternance** dans le domaine de la Data Science (et métiers connexes), publiées sur Indeed France à l’aide de la bibliothèque python-jobspy.
 
-## ✅ Prérequis
+##  Prérequis
 Avant d'exécuter le script, assurez-vous d'avoir Python installé (par exemple 3.12.4) et d'installer les dépendances nécessaires.
 
 1. Installer python-jobspy
