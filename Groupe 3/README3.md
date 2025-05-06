@@ -23,7 +23,7 @@ Avant d'exécuter le script, assurez-vous d'avoir Python installé (par exemple 
    2. Autres dépendances (installées automatiquement avec pip dans un environnement propre)
 pandas ,datetime,logging,re,json;csv,sys
 
-## ✅  Exécution du script. 
+##   Exécution du script. 
 
 Le script effectuera les actions suivantes :
 
@@ -32,14 +32,14 @@ Le script effectuera les actions suivantes :
 
 🧹Nettoyage des données : suppression des doublons, nettoyage du texte, mise en forme des champs (dates, salaires, type de contrat...).
 
-📊 Analyse simple :
+ Analyse simple :
 
 Entreprises les plus présentes
 Localisations les plus fréquentes
 Types de contrat
 Plage de dates de publication
 
-💾 Formats de sauvegarde :
+ Formats de sauvegarde :
 
 - **CSV** : fichier tabulaire classique (`.csv`)  
 - **JSON** : fichier structuré pour usage API ou traitement (`.json`)  
