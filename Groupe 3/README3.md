@@ -2,9 +2,13 @@
  5 Auteurs : 
  
 1.Grégoire Fuchs
+
 2.Eelai
+
 3.Vasile
+
 4.Laurentiu
+
 5.Sayqin
 
 # Partie 1 : Webscraping  des offres d'alternance. 
