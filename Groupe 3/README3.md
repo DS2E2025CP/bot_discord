@@ -1,15 +1,15 @@
 
- 5 Auteurs : 
+ 5 Auteurs  actifs pour ce travail d'équipe: 
  
-1.Grégoire Fuchs
+Grégoire Fuchs
 
-2.Eelai
+Eelai
 
-3.Vasile
+Vasile
 
-4.Laurentiu
+Laurentiu
 
-5.Sayqin
+Sayqin
 
 # Partie 1 : Webscraping  des offres d'alternance. 
 
