@@ -7,7 +7,7 @@
 <div align="center">
   <p><em>Projet académique — Master 1 DS2E — Faculté des sciences économiques et de gestion de Strasbourg</em></p>
   
-  <img src="https://github.com/DS2E2025CP/bot_discord/raw/main/assets/images/fseg_logo.png" alt="Logo FSEG" width="400"/>
+  <img src="https://raw.githubusercontent.com/DS2E2025CP/bot_discord/main/assets/images/fseg_logo.png" alt="Logo FSEG" width="400"/>
 </div>
 
 ## 📋 Table des matières
