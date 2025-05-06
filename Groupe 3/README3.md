@@ -1,6 +1,6 @@
 
  5 Auteurs : 
-Grégoire Fuchs, 
+Grégoire Fuchs
 Eelai
 Vasile
 Laurentiu
