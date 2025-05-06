@@ -5,10 +5,9 @@
 ![License](https://img.shields.io/badge/license-MIT-orange.svg)
 
 <div align="center">
-
   <p><em>Projet académique — Master 1 DS2E — Faculté des sciences économiques et de gestion de Strasbourg</em></p>
   
-  <img src="assets/images/fseg_logo.png" alt="Logo Faculté des Sciences Économiques et de Gestion" width="400"/>
+  <img src="https://github.com/DS2E2025CP/bot_discord/raw/main/assets/images/fseg_logo.png" alt="Logo FSEG" width="400"/>
 </div>
 
 ## 📋 Table des matières
