@@ -1,82 +1,237 @@
-# 🚀 Projet - Gestion du serveur Discord et intégration du bot
+# Groupe 1 - Interface Discord & Orchestration
+## Projet JobHunterAI
 
-## Partie I : Gestion du serveur Discord et du bot 🤖
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Python](https://img.shields.io/badge/Python-3.10+-green.svg)
+![Discord.py](https://img.shields.io/badge/discord.py-2.0+-blueviolet.svg)
 
-### 🎯 But
+<div align="center">
+  <p><em>Développement de l'interface Discord et intégration des modules - Master 1 DS2E</em></p>
+  <img src="https://raw.githubusercontent.com/DS2E2025CP/bot_discord/main/assets/images/fseg_logo.png" alt="Logo FSEG" width="400"/>
+</div>
 
-Ce groupe est chargé de **créer, gérer et maintenir un serveur Discord** pour le projet et d'intégrer un **bot** pour faciliter les interactions avec les utilisateurs. Ce bot servira à exécuter des commandes et des fonctions développées par les autres groupes, tout en garantissant une communication fluide entre tous les groupes du projet.
+## 📋 Sommaire
 
-### ✅ Prérequis
+- [Présentation du module](#-présentation-du-module)
+- [Architecture technique](#-architecture-technique)
+- [Composants développés](#-composants-développés)
+- [Commandes implémentées](#-commandes-implémentées)
+- [Défis techniques résolus](#-défis-techniques-résolus)
+- [Installation et déploiement](#-installation-et-déploiement)
+- [Contribution](#-contribution)
 
-Avant de commencer, assurez-vous que vous avez **Python** et **Discord.py** installés sur votre machine.
+## 📋 Présentation du module
 
-1. Installer **Discord.py** :
+Le Groupe 1 était responsable du **développement de l'interface Discord** et de **l'orchestration des différents modules** du bot JobHunterAI. Notre travail a consisté à créer l'architecture centrale du système, à implémenter les commandes slash Discord, et à assurer l'intégration harmonieuse des fonctionnalités développées par les autres groupes.
 
-pip install discord.py
+Notre module est le cœur du système, servant de point d'entrée pour les utilisateurs et de liaison entre les différentes fonctionnalités. Nous avons créé un framework extensible permettant d'ajouter de nouvelles commandes et fonctionnalités de manière modulaire.
 
-2. Autres dépendances possibles (si nécessaire) :
-- **dotenv** (pour gérer les variables d'environnement) :  
-  ```
-  pip install python-dotenv
-  ```
-- **Git** pour le versioning et la gestion du code source.  
-  Vous aurez également besoin d'un compte GitHub pour centraliser le code. 📂
+## 🏗 Architecture technique
 
-### 🚀 Création du serveur Discord et du compte GitHub
+### Structure du code
 
-1. **Créer un serveur Discord** dédié au projet :  
-Le serveur doit être configuré avec des **canaux textuels** pour chaque groupe, des **canaux vocaux** pour les discussions en temps réel, et un **canal pour l'intégration du bot**. 🎤
+```
+├── bot.py                  # Point d'entrée principal et orchestration
+├── extract_cv.py           # Analyse de CV (PDF/DOCX → structure)  
+├── scrape_jobs.py          # Interface pour la recherche d'offres
+├── scrape_jobs_g3.py       # Intégration Indeed (Groupe 3)
+├── scrape_stages.py        # Recherche spécifique de stages
+├── mistral_utils.py        # Utilitaires pour l'API Mistral
+├── gemini_utils.py         # Utilitaires pour l'API Gemini
+├── partieLLM_discord.py    # Interface pour les fonctions Groupe 5
+└── utils/
+    └── helper.py           # Gestion des données utilisateur et utilitaires
+```
 
-2. **Créer un compte GitHub spécifique au projet** :  
-Le code source et la gestion du projet seront centralisés sur GitHub pour une meilleure collaboration. 📂
+### Flux de données
 
-### 🔧 Développement et gestion du bot via `bot.py`
+1. **Entrée utilisateur** via commandes slash Discord
+2. **Traitement des commandes** dans les modules spécifiques
+3. **Stockage temporaire** des données utilisateur (CV, offres sélectionnées)
+4. **Orchestration** des appels vers les services externes (APIs)
+5. **Retour interactif** via embeds Discord et composants UI
 
-1. **Développer le fichier `bot.py`** :  
-Ce fichier servira à intégrer les différentes fonctionnalités développées par les autres groupes et à les lier avec le bot. Les fonctionnalités pourraient inclure des commandes spécifiques, l’envoi de notifications, ou encore l’interaction avec des bases de données. ⚙️
+### Technologies utilisées
 
-2. **Gérer les commandes et l’interaction sur Discord** :  
-- Le bot devra être capable de répondre aux commandes simples des utilisateurs.  
-- Exemples de commandes : `!start`, `!help`, `!status`, etc.  
-- Le bot devra également permettre l’envoi de messages automatisés ou des interactions avec d’autres bots ou outils. 📩
+- **discord.py 2.0+** : Framework Discord complet avec support des commandes slash
+- **PyPDF2/docx** : Extraction de texte depuis les documents
+- **APIs externes** : Mistral AI, Google Gemini, France Travail
+- **Gestion asynchrone** : asyncio pour les opérations non-bloquantes
+- **Logging structuré** : Suivi des actions et des erreurs
 
-### 🤝 Communication entre les groupes
+## 🔧 Composants développés
 
-1. **Coordination avec les autres groupes** :  
-Ce groupe doit assurer la communication entre tous les autres groupes pour définir les **formats d’input/output** attendus par le bot. Nous veillerons à ce que les données envoyées par les autres groupes soient correctement formatées. 🔗
+### Système de gestion des données utilisateur
 
-2. **Tests d’intégration** :  
-- Effectuer des tests réguliers pour s’assurer que les différentes fonctionnalités du bot interagissent bien avec celles des autres groupes. 🧪
-- Vérifier que le bot fonctionne correctement avant chaque mise à jour importante du code. ✅
+Nous avons développé une structure de données centralisée (`UserData`) pour stocker et gérer les informations utilisateur entre les différentes commandes :
 
-### 📅 Maintenance et suivi
+```python
+# Structure simplifiée de la classe UserData
+class UserData:
+    def __init__(self):
+        self.cv_raw = None          # Contenu brut du CV
+        self.cv_structured = None    # CV analysé (format JSON)
+        self.cv_file_name = None     # Nom du fichier CV
+        self.job_offer = None        # Offre d'emploi sélectionnée
+        self.lettre_infos = None     # Informations pour la lettre
+```
 
-1. **Maintenance continue du serveur Discord** :  
-- Ajouter/supprimer des canaux si nécessaire, gérer les permissions des utilisateurs, etc. 🔧  
-- S’assurer que le serveur Discord reste fonctionnel et bien organisé. 💬
+Cette architecture nous permet de maintenir le contexte utilisateur à travers différentes commandes sans recourir à une base de données, parfaitement adaptée à un usage académique.
 
-2. **Mise à jour et suivi du bot** :  
-- Ajouter de nouvelles fonctionnalités et corriger les bugs rencontrés. 🐞  
-- Veiller à la stabilité du bot en effectuant des mises à jour régulières du code. 🔄
+### Framework d'intégration des modules
 
-### 💾 Sauvegarde et gestion des données
+Nous avons créé un système modulaire d'intégration permettant aux autres groupes d'ajouter facilement leurs fonctionnalités :
 
-1. **Sauvegarder les logs et les interactions du bot** :  
-Pour chaque commande et événement du bot, enregistrer les **logs** pour pouvoir les consulter en cas de problème. 📜
+```python
+# Exemple de notre méthode d'intégration depuis bot.py
+def setup(bot):
+    # Configuration des modules
+    setup_scrape_command(bot)
+    setup_cv_mistral_command(bot)
+    setup_cv_gemini_command(bot)
+    setup_upload_cv_command(bot)
+    setup_compare_command(bot)
+    setup_letter_command(bot)
+    
+    # Modules conditionnels
+    if PARSE_CV_COMMANDS_AVAILABLE:
+        setup_parse_cv_commands(bot)
+    
+    if GEMINI_API_KEY:
+        setup_partillm_commands(bot, GEMINI_API_KEY)
+```
 
-2. **Gérer la sécurité** :  
-Protéger les clés API et les données sensibles (comme les tokens Discord) via des variables d’environnement ou un fichier `.env`. 🔐
+### Interface utilisateur Discord
+
+Nous avons développé des composants interactifs pour améliorer l'expérience utilisateur :
+- **Embeds** : Affichage structuré et visuel des informations
+- **Menus déroulants** : Sélection d'offres d'emploi
+- **Messages éphémères** : Communication privée avec l'utilisateur
+- **Modals** : Collecte d'informations supplémentaires
+
+## 📋 Commandes implémentées
+
+Nous avons implémenté et intégré les commandes slash suivantes :
+
+### Gestion de CV
+- `/telecharger_cv` : Upload et extraction du texte d'un CV (PDF/DOCX)
+- `/extraire_cv_mistral` : Analyse structurée via Mistral AI
+- `/extraire_cv_gemini` : Analyse structurée via Google Gemini
+
+### Recherche d'emploi
+- `/scrape` : Recherche multi-source (France Travail + Indeed)
+- `/scrape_stage` : Recherche spécifique de stages
+
+### Analyse et matching
+- `/comparer_cv_offre` : Comparaison CV/offre (méthode standard)
+- `/analyser_cv_offre` : Analyse détaillée de compatibilité (Groupe 5)
+
+### Génération de documents
+- `/infos_lettre_g5` : Collecte d'informations complémentaires
+- `/generer_lettre` : Création de lettre de motivation (méthode standard)
+- `/generer_lettre_g5` : Génération avancée via Gemini (Groupe 5)
+
+## 🛠 Défis techniques résolus
+
+### 1. Gestion des interactions Discord expirées
+
+Les interactions Discord ont une durée de vie limitée (3 secondes), mais certaines opérations (analyse de CV, génération de lettre) prennent plus de temps. Nous avons implémenté un système robuste de réponses différées :
+
+```python
+@bot.tree.command(name="extraire_cv_gemini")
+async def extraire_cv_gemini(interaction: discord.Interaction):
+    # Différer la réponse immédiatement
+    await interaction.response.defer(thinking=True)
+    
+    # Traitement long...
+    
+    # Répondre une fois le traitement terminé
+    await interaction.followup.send(embed=embed)
+```
+
+### 2. Orchestration des modules
+
+Nous avons dû concevoir une architecture permettant l'intégration de modules développés indépendamment par différentes équipes, avec des styles et approches variés. Notre solution :
+
+1. Création d'interfaces standardisées
+2. Système d'initialisation modulaire
+3. Architecture de partage de données utilisateur
+4. Gestion centralisée des erreurs
+
+### 3. Extraction et traitement de texte
+
+L'extraction fiable de texte depuis divers formats de CV a nécessité des techniques robustes :
+
+```python
+async def extract_text_from_file(attachment):
+    file_bytes = await attachment.read()
+    file_stream = io.BytesIO(file_bytes)
+    text = ""
+    
+    if attachment.filename.lower().endswith('.pdf'):
+        reader = PyPDF2.PdfReader(file_stream)
+        for page in reader.pages:
+            text += page.extract_text() + "\n"
+    elif attachment.filename.lower().endswith('.docx'):
+        doc = docx.Document(file_stream)
+        for para in doc.paragraphs:
+            text += para.text + "\n"
+    # ...
+```
+
+## 💻 Installation et déploiement
+
+### Prérequis
+- Python 3.10 ou supérieur
+- Token de bot Discord
+- Clés API (Mistral AI, Google Gemini)
+- Identifiants France Travail
+
+### Installation
+
+1. Clonez le dépôt
+```bash
+git clone https://github.com/DS2E2025CP/bot_discord.git
+cd bot_discord
+```
+
+2. Configurez les variables d'environnement
+Créez un fichier `.env` à la racine du projet :
+```
+DISCORD_TOKEN=votre_token_discord
+
+MISTRAL_API_KEY=votre_cle_mistral
+GEMINI_API_KEY=votre_cle_gemini
+
+FT_CLIENT_ID=
+FT_CLIENT_SECRET=
+```
+
+3. Lancez le bot
+```bash
+python bot.py
+```
+
+### Déploiement
+
+Pour un déploiement en production, nous recommandons :
+- Utilisation d'un service comme Heroku, Railway ou un VPS
+- Configuration d'un système de monitoring
+- Mise en place de logs persistants
+
+## 👥 Contribution
+
+- Conception de l'architecture globale
+- Développement du framework d'intégration Discord
+- Implémentation des commandes slash
+- Coordination avec les autres groupes
+- Résolution des problèmes d'intégration
+- Tests et debugging
+- Documentation
+
 
 ---
 
-## Partie II : Optimisation et évolutions futures 🔮
-
-### ⚙️ Optimisation du bot
-
-- **Gestion de la charge** : Prévoir des mécanismes pour gérer un grand nombre d’utilisateurs ou d’interactions simultanées.
-- **Amélioration de l’UX** : Ajouter de nouvelles commandes interactives et des réponses plus intelligentes. 🎮
-
-### 📈 Scalabilité et extensions possibles
-
-- **Ajouter des fonctionnalités supplémentaires** : Le bot pourrait à l'avenir inclure des interactions avec d'autres plateformes ou API externes (par exemple, gestion des tâches, intégration d'un calendrier, etc.). 🌐
-- **Créer des sous-commandes** pour des tâches spécifiques comme l’analyse de données ou la gestion des tâches de projet. 🛠️
+<div align="center">
+  <p><em>Projet JobHunterAI - Master 1 DS2E - Faculté des sciences économiques et de gestion de Strasbourg - 2025</em></p>
+</div>
