@@ -1,5 +1,5 @@
 
- 5 Auteurs  actifs pour ce travail d'équipe: 
+ 5 Auteurs  actifs pour ce travail **d'équipe**, dans le but d'**insérer cette fonctionnalité dans le bot discord**: 
  
 Grégoire Fuchs
 
