@@ -11,9 +11,20 @@ Laurentiu
 
 Sayqin**
 
+## 📌 Sommaire
+
+- [Partie I : Webscrapping des offres d'alternance](#partie-1--webscraping--des-offres-dalternance)
+  - [But](#but)
+  - [Prérequis](#-prérequis)
+  - [Exécution du script](#-exécution-du-script)
+  - [Limites](#limites)
+- [Partie 2 : Webscrapping des offres de stage](#partie-2--webscraping-des-offres-de-stage)
+  - [Introduction](#introduction)
+  - [1. Webscraping des stages sur Indeed](#1-webscraping-des-stages-sur-indeed)
+  - [2. Webscraping via Google Jobs](#2-webscraping-des-stages-via-google-jobs)
+  - [3. Optimisation et perspectives](#3-optimisation-et-perspectives)
+
 # Partie 1 : Webscraping  des offres d'alternance. 
-
-
 
 ## But : 
 Ce script permet de collecter, nettoyer, analyser et sauvegarder des offres d'emploi en **alternance** dans le domaine de la Data Science (et métiers connexes), publiées sur Indeed France à l’aide de la bibliothèque python-jobspy.
